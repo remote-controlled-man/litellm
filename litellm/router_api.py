@@ -58,6 +58,7 @@ if TYPE_CHECKING:
     from litellm.litellm_core_utils.streaming_handler import CustomStreamWrapper
     from litellm.llms.custom_httpx.http_handler import AsyncHTTPHandler
     from litellm.messages.dispatch import MessagesResult
+    from litellm.redis.stores.router_session_pins import RouterSessionPinStore
     from litellm.responses.streaming_iterator import BaseResponsesAPIStreamingIterator
     from litellm.router import Router
     from litellm.router_strategy.adaptive_router.adaptive_router import AdaptiveRouter
@@ -1337,6 +1338,11 @@ class RouterHealth:
     def cooldowns(self) -> "CooldownCache":
         """The cooldown store (was ``cooldown_cache``)."""
         return self._router._core_cooldown_cache
+
+    @property
+    def session_pins(self) -> "RouterSessionPinStore":
+        """The session affinity pins deployment affinity and the complexity router claim and read."""
+        return self._router._core_session_pins
 
     @property
     def health_checks(self) -> "DeploymentHealthCache":

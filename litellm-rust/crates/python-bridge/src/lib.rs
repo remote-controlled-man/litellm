@@ -60,6 +60,8 @@ mod _native {
     #[pymodule_export]
     use crate::redis::store::request::{NativeRequestRedis, NativeSend};
     #[pymodule_export]
+    use crate::redis::store::router_session_pins::NativeRouterSessionPins;
+    #[pymodule_export]
     use crate::redis::store::router_usage::{NativeRouterUsage, NativeUsageReservation};
     #[pymodule_export]
     use crate::redis::store::sensitive_route_pins::NativeSensitiveRoutePins;
@@ -154,6 +156,7 @@ mod tests {
                 "NativeSend",
                 "NativeAuthCache",
                 "NativeDeploymentHealth",
+                "NativeRouterSessionPins",
                 "NativeRateLimits",
                 "WindowCount",
                 "AtomicApplied",
